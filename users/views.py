@@ -3,7 +3,7 @@ from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.serializers import Serializer
-from rest_framework_jwt.authentication import JSONWebTokenAuthentication 
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from .serializers import UserRegistrationSerializer
 from .serializers import UserLoginSerializer, UserDetailSerializer
 from .models import UserProfile
@@ -55,7 +55,6 @@ class UserView(RetrieveAPIView):
     def get(self, request, email):
         serializer = UserDetailSerializer(request.user)
         return Response(serializer.data)
-
 
 
 class UserProfileView(RetrieveAPIView):

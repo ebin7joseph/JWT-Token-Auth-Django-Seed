@@ -63,6 +63,7 @@ class UserProfile(models.Model):
     """
     to store all other attributes associated to user
     """
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     name = models.CharField(max_length=50, unique=False)
