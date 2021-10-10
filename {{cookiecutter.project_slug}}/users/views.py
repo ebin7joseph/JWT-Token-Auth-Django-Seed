@@ -18,9 +18,9 @@ class UserRegistrationView(CreateAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         response = {
-            "success": "True",
+            "success": True,
             "status code": status.HTTP_200_OK,
-            "message": "User registered  successfully",
+            "message": "User registered successfully",
         }
         status_code = status.HTTP_200_OK
         return Response(response, status=status_code)
@@ -35,10 +35,10 @@ class UserLoginView(RetrieveAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         response = {
-            "success": "True",
+            "success": True,
             "status code": status.HTTP_200_OK,
             "email": serializer.data["email"],
-            "message": "User logged in  successfully",
+            "message": "User logged in successfully",
             "token": serializer.data["token"],
         }
         status_code = status.HTTP_200_OK
@@ -65,7 +65,7 @@ class UserProfileView(RetrieveAPIView):
             user_profile = UserProfile.objects.get(user=request.user)
             status_code = status.HTTP_200_OK
             response = {
-                "success": "true",
+                "success": True,
                 "status code": status_code,
                 "message": "User profile fetched successfully",
                 "data": [
@@ -78,7 +78,7 @@ class UserProfileView(RetrieveAPIView):
         except Exception as e:
             status_code = status.HTTP_400_BAD_REQUEST
             response = {
-                "success": "false",
+                "success": False,
                 "status code": status.HTTP_400_BAD_REQUEST,
                 "message": "User does not exists",
                 "error": str(e),
