@@ -2,7 +2,6 @@ from rest_framework import status
 from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.serializers import Serializer
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from .serializers import UserRegistrationSerializer
 from .serializers import UserLoginSerializer, UserDetailSerializer
@@ -33,7 +32,6 @@ class UserLoginView(RetrieveAPIView):
     serializer_class = UserLoginSerializer
 
     def post(self, request):
-        allowed_methods = ["POST"]
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         response = {
